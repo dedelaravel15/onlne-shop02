@@ -8,4 +8,10 @@
     <p class="card-text">{{$product->description}}</p>
   </div>
 </div>
+
+<form action="{{route('add_cart', $product)}}" method="post">
+  @csrf
+    <input type="number" name="amount" id="">
+    <button type="submit" class="btn btn-success">Tambah Ketroli</button>
+</form>
 @endsection

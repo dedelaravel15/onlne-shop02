@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -69,6 +70,19 @@ class AdminController extends Controller
     public function delete(Product $product)
     {
         $product->delete();
+        return Redirect::back();
+    }
+    public function show_order()
+    {
+        $orders = Order::all();
+        return view('menu.admin.order.index', compact('orders'));
+
+    }
+    public function confirm(Order $order)
+    {
+        $order->update([
+            'is_paid' => true
+        ]);
         return Redirect::back();
     }
 }

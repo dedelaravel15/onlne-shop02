@@ -2,10 +2,22 @@
 
 @section('product')
 @include('nav-menu')
-<form class="d-flex m-2">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-primary text-center" type="submit">Search</button>
+
+
+<!-- Start kode untuk form pencarian -->
+<form class="form" method="get" action="{{ route('search') }}">
+    <div class="form-group w-100 mb-3">
+        <label for="search" class="d-block mr-2">Pencarian</label>
+        <input type="text" name="search" class="form-control w-75 d-inline" id="search" placeholder="Masukkan keyword">
+        <button type="submit" class="btn btn-primary mb-1">Cari</button>
+    </div>
 </form>
+<!-- Start kode untuk form pencarian -->
+@if ($message = Session::get('success'))
+<div class="alert alert-success">
+    <p>{{ $message }}</p>
+</div>
+@endif
         @foreach($products as $product)
             <a href="{{route('description', $product)}}" class="text-decoration-none">
                 <div class="card m-2" style="width: 18rem;">
